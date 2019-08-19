@@ -1,0 +1,51 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class playerControllerSecond : MonoBehaviour {
+	public float speed; 
+	private Rigidbody2D rb; 
+	private Vector2 moveVelocity; 
+	void Start()
+	{
+		rb = GetComponent<Rigidbody2D>();
+
+
+
+
+	}
+
+	void Update()
+	{
+
+		/*if (Input.GetKey (left)) {
+			rb.velocity = new Vector2 (-speed, rb.velocity.y);
+
+		} else if (Input.GetKey (right)) {
+			rb.velocity = new Vector2 (speed, rb.velocity.y); 
+
+		} else 
+		{
+			rb.velocity = new Vector2 (0, rb.velocity.y); 
+
+		}
+		if (Input.GetKey (up)) {
+			rb.velocity = new Vector2 (rb.velocity.x, -speed); 
+		} else if (Input.GetKey (down)) {
+			rb.velocity = new Vector2 (rb.velocity.x, speed); 
+		} else
+		{
+			rb.velocity = new Vector2 (rb.velocity.x, 0); 
+		}*/
+
+		Vector2 moveInput = new Vector3 (Input.GetAxisRaw ("Horizontal2"), Input.GetAxisRaw ("Vertical2"));
+		moveVelocity = moveInput.normalized * speed; 
+
+
+	}
+
+	void FixedUpdate(){
+		rb.MovePosition (rb.position + moveVelocity * Time.fixedDeltaTime); 
+
+	}
+}
